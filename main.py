@@ -1,15 +1,18 @@
 import os
 from PIL import Image
 
-# Создаем список dds-файлов
-dds_files = [f for f in os.listdir('.') if f.endswith('.dds')]
+# Creating a list of dds files from those in the directory
+dds_img = [f for f in os.listdir('.') if f.endswith('.dds')]
 
-# Создаем папку для сохранения png-файлов
-save_folder = 'PNG'
-if not os.path.exists(save_folder):
-    os.makedirs(save_folder)
+# Creating a folder to save png files
+folder = 'PNG'
+if not os.path.exists(folder):
+    os.makedirs(folder)
 
-# Конвертируем и сохраняем каждый dds-файл
-for file in dds_files:
+# Convert and save each dds file in png format
+for file in dds_img:
     img = Image.open(file)
-    img.save(os.path.join(save_folder, os.path.splitext(file)[0] + '.png'))
+    img.save(os.path.join(folder, os.path.splitext(file)[0] + '.png'))
+    print(F"{file} --> png")
+
+input("The files have been converted. Press [Enter] to close the program...")
